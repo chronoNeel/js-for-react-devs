@@ -134,3 +134,88 @@ const filtered = arr.filter ((value, index, array) => {
 })
 console.log (filtered); // [ 10, 20 ]
 ```
+
+
+## slice
+
+The `slice` method returns a shallow copy of a potion of an array into a new array, without modifying the original array. 
+
+**Syntax**
+
+array.slice(start, end)
+
+**Examples**
+
+1. **Basic Slicing**
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6];
+const result = numbers.slice (2, 5);
+console.log (result); // [ 3, 4, 5 ]
+```
+
+2. **Omitting `end`**
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6];
+const result = numbers.slice (2);
+console.log (result); // [ 3, 4, 5, 6 ]
+```
+
+3. **Negative Indices**
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6];
+const result = numbers.slice (2, -1);
+console.log (result); // [ 3, 4, 5 ]
+```
+
+4. Shallow Copy of Objects
+```javascript
+const students = [
+    { id : 1, name : 'Alex'},
+    { id : 2, name : 'Haley'},
+    { id : 3, name : 'Manny'},
+];
+
+const sliced = students.slice (0, 2);
+sliced[0].name = "Alex Updated";
+console.log (sliced);
+console.log (students);
+
+
+// Output : 
+// [ { id: 1, name: 'Alex Updated' }, { id: 2, name: 'Haley' } ]
+// [
+//   { id: 1, name: 'Alex Updated' },
+//   { id: 2, name: 'Haley' },
+//   { id: 3, name: 'Manny' }
+// ]
+```
+The `slice()` method creates a shallow copy, so object references are shared, and modifying an object in the sliced array affects the original.
+
+5. **Using with Strings (Array-like Objects)**
+
+```javascript
+const numbers = [1, 2, 3];
+const copy = numbers.slice();
+console.log(copy); // Output: [1, 2, 3]
+```
+
+## splice
+
+The `splice` method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place. It changes the main array
+
+**Syntax**
+```javascript
+array.splice(index, count, item1, ....., itemX)
+```
+
+**Examples**
+
+1. **Adding Elements After Slicing**
+
+```js
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+const sliced = fruits.splice(2, 1, "Lemon", "Kiwi");
+console.log (fruits, sliced); // [ 'Banana', 'Orange', 'Lemon', 'Kiwi', 'Mango' ] [ 'Apple' ]
+```
+
