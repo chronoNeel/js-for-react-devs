@@ -219,3 +219,153 @@ const sliced = fruits.splice(2, 1, "Lemon", "Kiwi");
 console.log (fruits, sliced); // [ 'Banana', 'Orange', 'Lemon', 'Kiwi', 'Mango' ] [ 'Apple' ]
 ```
 
+2. **Using with Array of Objects**
+
+```js
+const students = [
+    { id : 1, stdName : 'Nihal'},
+    { id : 2, stdName : 'Billal'},
+    { id : 3, stdName : 'Forhad'}
+];
+
+const removed = students.splice (1, 1, { id : 4, stdName : 'Bokor'});
+console.log (removed); // [ { id: 2, stdName: 'Billal' } ]
+console.log (students); // [
+                        //   { id: 1, stdName: 'Nihal' },
+                        //   { id: 4, stdName: 'Bokor' },
+                        //   { id: 3, stdName: 'Forhad' }
+                        // ]
+```
+
+
+## map 
+
+`map()` creates a new array from calling a function for every array element. It does not change the original array. 
+
+**Syntax**
+
+```js
+array.map(function(currentValue, index, arr), thisValue)
+```
+
+**Example**
+
+1. Transforming Numbers
+```js
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(element => element * 2);
+console.log(doubled); // Output: [2, 4, 6, 8]
+console.log(numbers); // Output: [1, 2, 3, 4] (original array unchanged)
+```
+
+2. Transforming Objects
+
+```js
+const students = [
+    { id : 1, stdName : 'Nihal'},
+    { id : 2, stdName : 'Billal'},
+    { id : 3, stdName : 'Forhad'}
+];
+
+studentName = students.map ((item) => item.stdName);
+console.log (studentName); // [ 'Nihal', 'Billal', 'Forhad' ]
+```
+
+3. Using `thisArg`
+
+```js
+const obj = {mul : 10};
+const numbers = [ 1, 2, 3 ];
+
+const result = numbers.map (function (n) {
+    return n * this.mul;
+}, obj);
+
+console.log (result); // [ 10, 20, 30 ]
+```
+
+
+4. Sparse Arrays
+```js
+const numbers = [ 1, , 3 ];
+
+const result = numbers.map ((n) => n * 10);
+console.log (result); // [ 10, <1 empty item>, 30 ]
+```
+`map()` does not call the callback for empty slots. 
+
+
+## Reduce
+
+The `reduce()` method executes a reducer function for array element. It eturns a single value: the function's accumulated result.
+
+
+**Syntax**
+
+```js
+array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+```
+
+1. **Summing Numbers**
+```js
+const numbers = [ 1, 2, 3 ];
+
+const result = numbers.reduce ((accumulator, currentValue) => {
+    console.log (accumulator, currentValue);
+        return accumulator + currentValue
+    }, 0);
+console.log ("The Summation is " + result); 
+// Output:
+// 0 1
+// 1 2
+// 3 3
+// The Summation is 6
+```
+
+2. Summing Without `initialValue`
+
+```js
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue);
+console.log(sum); // Output: 10
+```
+3. Using `index` and `array`
+
+```js
+const numbers = [10, 20, 30];
+const result = numbers.reduce((acc, curr, index, arr) => {
+  console.log(`Index: ${index}, Array: ${arr}`);
+  return acc + curr;
+}, 0);
+console.log(result); // Output: 60
+// Logs:
+// Index: 0, Array: 10,20,30
+// Index: 1, Array: 10,20,30
+// Index: 2, Array: 10,20,30
+```
+
+4. Flattening an Array
+
+```js
+const nestedArray = [[1, 2], [3, 4], [5, 6]];
+const flatArray = nestedArray.reduce ((acc, curr) => acc.concat (curr), []);
+console.log (flatArray); // [ 1, 2, 3, 4, 5, 6 ]
+```
+
+5. Grouping Objects
+
+```js
+const students = [
+  { name: 'Alex', grade: 'A' },
+  { name: 'Ibrahim', grade: 'B' },
+  { name: 'Rubi', grade: 'A' }
+];
+
+const grouped = students.reduce ((acc, curr) => {
+    acc [curr.grade] = acc [curr.grade] || [];
+    acc [curr.grade].push (curr.name);
+    return acc; // update the accumulator
+}, {});
+
+console.log (grouped); // Output: { A: ['Alex', 'Rubi'], B: ['Ibrahim'] }
+```
