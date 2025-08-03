@@ -151,3 +151,36 @@ function printPerson({ name, age = 30 }) {
 
 printPerson({ name: 'Alice' }); // Name: Alice, Age: 30
 ```
+
+### **13. Combining Array and Object Destructuring**
+
+```js
+const data = [
+  { name: 'Alex', id : 1 },
+  { name: 'Dunphy', id : 2 },
+];
+
+const [ {name : firstName}, {name : secondName } ] = data;
+console.log (firstName, secondName); // Alex Dunphy
+```
+
+### **14. Destructuring with Loops**
+
+```js
+const people = [{ name: 'Alice' }, { name: 'Bob' }];
+for (const { name } of people) {
+  console.log(name); // Alice, Bob
+}
+```
+
+### **15. Complex Nested Destructuring**
+
+```js
+const user = {
+  id: 1,
+  profile: { name: 'Alice', address: { city: 'Wonderland' } }
+};
+
+const {profile : {name : userName, address : { city}}} = user;
+console.log ( userName + " in " + city); // Alice in Wonderland
+```
