@@ -1,4 +1,4 @@
-## Javscript Array Methods
+# Javscript Array Methods
 
 This documentation provides a comprehensive overview of key Javascript array methods: find, findIndex, filter, slice, splice, concat, push, map and reduce. Each method is explained with syntax and example code. 
 
@@ -369,3 +369,4 @@ const grouped = students.reduce ((acc, curr) => {
 
 console.log (grouped); // Output: { A: ['Alex', 'Rubi'], B: ['Ibrahim'] }
 ```
+

@@ -54,16 +54,25 @@
 // console.log (posNumbers);
 
 
-const students = [
-  { name: 'Alex', grade: 'A' },
-  { name: 'Ibrahim', grade: 'B' },
-  { name: 'Rubi', grade: 'A' }
-];
+// const students = [
+//   { name: 'Alex', grade: 'A' },
+//   { name: 'Ibrahim', grade: 'B' },
+//   { name: 'Rubi', grade: 'A' }
+// ];
 
-const grouped = students.reduce ((acc, curr) => {
-    acc [curr.grade] = acc [curr.grade] || [];
-    acc [curr.grade].push (curr.name);
-    return acc; // update the accumulator
-}, {});
+// const grouped = students.reduce ((acc, curr) => {
+//     acc [curr.grade] = acc [curr.grade] || [];
+//     acc [curr.grade].push (curr.name);
+//     return acc; // update the accumulator
+// }, {});
 
-console.log (grouped);
+// console.log (grouped);
+const person = {
+  name: 'Alice',
+  address: { city: 'Wonderland', zip: 12345 }
+};
+const { name : personName, address : { city, zip }} = person;
+
+console.log(personName); // Alice
+console.log(city); // Wonderland
+console.log(zip); // 12345
